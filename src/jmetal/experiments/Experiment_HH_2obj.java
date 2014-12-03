@@ -43,19 +43,20 @@ public class Experiment_HH_2obj {
             softwares = new String[1];
             softwares[0] = args[0];
         } else {
-             softwares = new String[8];
+             softwares = new String[4];
             softwares[0] = "OO_MyBatis";
             softwares[1] = "OA_AJHsqldb";
             softwares[2] = "OA_AJHotDraw";
             softwares[3] = "OO_BCEL";
+            /*
             softwares[4] = "OA_HealthWatcher";
             softwares[5] = "OA_TollSystems";
             softwares[6] = "OO_JBoss";
             softwares[7] = "OO_JHotDraw";
-                    
+                    */
         }
 
-        int runsNumber = 30;
+        int runsNumber = 10;
         int populationSize = 300;
         int archiveSize = 300;
         int totalEvaluations = 60000; //ou seja o que for
