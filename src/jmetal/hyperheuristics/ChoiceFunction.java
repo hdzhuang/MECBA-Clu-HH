@@ -78,7 +78,7 @@ public class ChoiceFunction extends HyperHeuristicSelector {
     
     
     private double cFunction(AlgorithmHH alg, int frequency) {
-        return this.f1(this.algs.size(), frequency);//*this.scalingFactor + alg.getEstimatedTime(); //this.scalingFactor
+        return this.f1(this.algs.size(), frequency)*this.scalingFactor + alg.getEstimatedTime(); //this.scalingFactor
     }
 
     private double f1(int N, int frequency) {
