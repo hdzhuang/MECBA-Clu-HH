@@ -17,15 +17,16 @@ public class Experiment_NSGAII_4obj {
     public static void main(String[] args) throws FileNotFoundException, IOException, JMException, ClassNotFoundException {
 
         //Softwares
+        //Softwares
         String[] softwares = {
             "OA_AJHotDraw",
             "OA_AJHsqldb",
-            "OA_HealthWatcher",
-            "OA_TollSystems",
+            "OO_MyBatis",
             "OO_BCEL",
+            "OA_TollSystems",
             "OO_JBoss",
             "OO_JHotDraw",
-            "OO_MyBatis"
+            "OA_HealthWatcher"
         };
 
         for (String filename : softwares) {

@@ -45,7 +45,7 @@ public class Epsilon {
    * @param a. Solution front
    * @return the value of the epsilon indicator
    */
-  double epsilon(double [][] b, double [][] a, int dim) {
+  public double epsilon(double [][] b, double [][] a, int dim) {
     int  i, j, k;
     double  eps, eps_j = 0.0, eps_k=0.0, eps_temp;
 

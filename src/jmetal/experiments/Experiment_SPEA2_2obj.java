@@ -17,15 +17,16 @@ public class Experiment_SPEA2_2obj {
     public static void main(String[] args) throws FileNotFoundException, IOException, JMException, ClassNotFoundException {
 
         //Softwares
+        //Softwares
         String[] softwares = {
             "OA_AJHotDraw",
             "OA_AJHsqldb",
-            "OA_HealthWatcher",
-            "OA_TollSystems",
+            "OO_MyBatis",
             "OO_BCEL",
+            "OA_TollSystems",
             "OO_JBoss",
             "OO_JHotDraw",
-            "OO_MyBatis"
+            "OA_HealthWatcher"
         };
 
         for (String filename : softwares) {
@@ -33,7 +34,7 @@ public class Experiment_SPEA2_2obj {
             int runsNumber = 30;
             int populationSize = 300;
             int maxEvaluations = 60000;
-            int archiveSize = 250;
+            int archiveSize = 300;
             double crossoverProbability = 0.95;
             double mutationProbability = 0.02;
             String context = "_Comb_2obj";

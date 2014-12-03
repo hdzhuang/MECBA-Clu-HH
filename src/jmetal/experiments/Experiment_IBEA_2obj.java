@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import jmetal.base.*;
+import jmetal.base.operator.crossover.*;
 import jmetal.base.operator.mutation.*;
 import jmetal.base.operator.selection.*;
 import jmetal.problems.*;
-import jmetal.metaheuristics.paes.PAES;
+import jmetal.metaheuristics.ibea.IBEA;
 import jmetal.util.JMException;
 
-public class Experiment_PAES_2obj {
+public class Experiment_IBEA_2obj {
 
     //  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
     public static void main(String[] args) throws FileNotFoundException, IOException, JMException, ClassNotFoundException {
@@ -19,50 +20,55 @@ public class Experiment_PAES_2obj {
         String[] softwares = {
             "OA_AJHotDraw",
             "OA_AJHsqldb",
-            "OA_HealthWatcher",
-            "OA_TollSystems",
+            "OO_MyBatis",
             "OO_BCEL",
+            "OA_TollSystems",
             "OO_JBoss",
             "OO_JHotDraw",
-            "OO_MyBatis"
+            "OA_HealthWatcher"
         };
 
         for (String filename : softwares) {
 
             int runsNumber = 30;
+            int populationSize = 300;
             int maxEvaluations = 60000;
-            int archiveSize = 250;
-            int biSections = 5;
-            double mutationProbability = 1.0;
+            int archiveSize = 300;
+            double crossoverProbability = 0.95;
+            double mutationProbability = 0.02;
             String context = "_Comb_2obj";
 
-            File directory = new File("resultado/paes/" + filename + context);
+            File directory = new File("resultado/ibea/" + filename + context);
             if (!directory.exists()) {
                 if (!directory.mkdir()) {
-                    System.out.println("Can not create directory");
                     System.exit(0);
                 }
             }
 
             Combined2Objectives problem = new Combined2Objectives("problemas/" + filename + ".txt");
-            Algorithm algorithm = new PAES(problem);
+            Algorithm algorithm = new IBEA(problem);
             SolutionSet todasRuns = new SolutionSet();
+            Operator crossover;
             Operator mutation;
             Operator selection;
 
+            // Crossover
+            crossover = CrossoverFactory.getCrossoverOperator("TwoPointsCrossover");
+            crossover.setParameter("probability", crossoverProbability);
             // Mutation
             mutation = MutationFactory.getMutationOperator("SwapMutation");
             mutation.setParameter("probability", mutationProbability);
             // Selection
             selection = SelectionFactory.getSelectionOperator("BinaryTournament");
             // Algorithm params
+            algorithm.setInputParameter("populationSize", populationSize);
             algorithm.setInputParameter("maxEvaluations", maxEvaluations);
             algorithm.setInputParameter("archiveSize", archiveSize);
-            algorithm.setInputParameter("biSections", biSections);
+            algorithm.addOperator("crossover", crossover);
             algorithm.addOperator("mutation", mutation);
             algorithm.addOperator("selection", selection);
 
-            System.out.println("\n================ PAES ================");
+            System.out.println("\n================ IBEA ================");
             System.out.println("Software: " + filename);
             System.out.println("Context: " + context);
             System.out.println("Number of elements: " + problem.numberOfElements_);
@@ -81,8 +87,8 @@ public class Experiment_PAES_2obj {
                 resultFront = problem.removeDominadas(resultFront);
                 resultFront = problem.removeRepetidas(resultFront);
 
-                resultFront.printObjectivesToFile("resultado/paes/" + filename + context + "/FUN_paes" + "-" + filename + "-" + runs + ".NaoDominadas");
-                resultFront.printVariablesToFile("resultado/paes/" + filename + context + "/VAR_paes" + "-" + filename + "-" + runs + ".NaoDominadas");
+                resultFront.printObjectivesToFile("resultado/ibea/" + filename + context + "/FUN_ibea" + "-" + filename + "-" + runs + ".NaoDominadas");
+                resultFront.printVariablesToFile("resultado/ibea/" + filename + context + "/VAR_ibea" + "-" + filename + "-" + runs + ".NaoDominadas");
 
                 //armazena as solucoes de todas runs
                 todasRuns = todasRuns.union(resultFront);
@@ -90,11 +96,11 @@ public class Experiment_PAES_2obj {
 
             todasRuns = problem.removeDominadas(todasRuns);
             todasRuns = problem.removeRepetidas(todasRuns);
-            todasRuns.printObjectivesToFile("resultado/paes/" + filename + context + "/All_FUN_paes" + "-" + filename);
-            todasRuns.printVariablesToFile("resultado/paes/" + filename + context + "/All_VAR_paes" + "-" + filename);
+            todasRuns.printObjectivesToFile("resultado/ibea/" + filename + context + "/All_FUN_ibea" + "-" + filename);
+            todasRuns.printVariablesToFile("resultado/ibea/" + filename + context + "/All_VAR_ibea" + "-" + filename);
 
             //grava arquivo juntando funcoes e variaveis
-            //gravaCompleto(todasRuns, "TodasRuns-Completo_paes");
+            //gravaCompleto(todasRuns, "TodasRuns-Completo_ibea");
         }
     }
     //  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --

@@ -476,5 +476,9 @@ public class Solution implements Serializable {
 
         return bits;
     } // getNumberOfBits
+    
+    public int getNumberOfObjectives() {
+        return numberOfObjectives_;
+    }
 } // Solution
 

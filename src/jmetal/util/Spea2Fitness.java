@@ -160,13 +160,13 @@ public class Spea2Fitness {
                     //i y toRemove have the same distance to the first solution
                 } else if (dn.get(0).getDistance() == minDistance) {
                     int k = 0;
-                    while ((dn.get(k).getDistance()
+                    while ((k < dn.size() && k < distanceList.get(toRemove).size()) && (dn.get(k).getDistance()
                             == distanceList.get(toRemove).get(k).getDistance())
                             && k < (distanceList.get(i).size() - 1)) {
                         k++;
                     }
 
-                    if (dn.get(k).getDistance()
+                    if ((k < dn.size() && k < distanceList.get(toRemove).size()) && dn.get(k).getDistance()
                             < distanceList.get(toRemove).get(k).getDistance()) {
                         toRemove = i;
                     } // if
