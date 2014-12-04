@@ -34,7 +34,7 @@ public class ChoiceFunction extends HyperHeuristicSelector {
         ArrayList<Integer> chosen=new ArrayList<>();
         for(int i=0; i < algs.size(); i++){
             AlgorithmHH alg=this.algs.get(i);
-            AlgorithmRanking hypRanking = this.getMetric(alg, this.hypervolume); //RNI
+            AlgorithmRanking hypRanking = this.getMetric(alg, this.rni); //RNI
             frequencies[i] = frequencies[i] + hypRanking.getRanking();//RNI
             double cFvalue=this.cFunction(alg, frequencies[i]);
             if(cFvalue > valueChosen){
