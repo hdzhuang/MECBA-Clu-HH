@@ -62,7 +62,7 @@ public class Experiment_HH_4obj {
         int totalEvaluations = 60000; //ou seja o que for
         int runHH = 120;
         int maxEvaluations = totalEvaluations/runHH;//slideSize como no artigo
-        double scalingFactor = 2;
+        double scalingFactor = 20;
         runHH--;//remover a inicializacao da conta
         double crossoverProbability = 0.95;
         double mutationProbability = 0.02; //0.2;
