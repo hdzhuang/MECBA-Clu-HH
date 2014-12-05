@@ -16,25 +16,25 @@ public class Experiment_SPEA2_2obj {
     //  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
     public static void main(String[] args) throws FileNotFoundException, IOException, JMException, ClassNotFoundException {
 
-        //Softwares
-        //Softwares
+         //Softwares
         String[] softwares = {
-            "OA_AJHotDraw",
-            "OA_AJHsqldb",
             "OO_MyBatis",
+            "OA_AJHsqldb",
+            "OA_AJHotDraw",
             "OO_BCEL",
-            "OA_TollSystems",
-            "OO_JBoss",
-            "OO_JHotDraw",
-            "OA_HealthWatcher"
+            //"OA_TollSystems",
+            //"OO_JBoss",
+            //"OO_JHotDraw",
+            //"OA_HealthWatcher"
         };
+
 
         for (String filename : softwares) {
 
-            int runsNumber = 30;
-            int populationSize = 300;
+            int runsNumber = 20;
+            int populationSize = 48;
+            int archiveSize = populationSize;
             int maxEvaluations = 60000;
-            int archiveSize = 300;
             double crossoverProbability = 0.95;
             double mutationProbability = 0.02;
             String context = "_Comb_2obj";

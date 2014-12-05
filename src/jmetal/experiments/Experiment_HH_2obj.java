@@ -56,11 +56,11 @@ public class Experiment_HH_2obj {
                     */
         }
 
-        int runsNumber = 10;
-        int populationSize = 300;
-        int archiveSize = 300;
+        int runsNumber = 20;
+        int populationSize = 48;
+        int archiveSize = populationSize;
         int totalEvaluations = 60000; //ou seja o que for
-        int runHH = 120;
+        int runHH = 25;
         int maxEvaluations = totalEvaluations/runHH;//slideSize como no artigo
         double scalingFactor = 20;
         
